@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node*next;
+    node(int val)
+    {
+        data= val;
+        next= NULL;
+    }
+};
+    
+class Queue
+{
+  private:
+
+         node *Front;
+         node * Rear;
+ 
+  public:
+          Queue()
+          {
+            Front= NULL;
+            Rear=NULL;
+     }       
+     
+  void enqueue(int val)
+     {
+        node*newnode = new node(val);
+
+        if(newnode==NULL)
+        {
+            cout<<"Queue Overflow\n";
+            return;
+        }
+        if(Front==NULL && Rear==NULL)
+        {
+            Front=Rear=newnode;
+        }
+        Rear--->next=newnode;
+        Rear=Rear--->next;
+        cout<<"insert succucessfully\n";
+     }
+  void dequeue()
+  {
+    if(Front=NULL)
+    {
+        cout<<"Queue underflow \n";
+        return;
+    }
+    node*temp =Front;
+    Front=Front->next;
+    if(Front==NULL)
+    {
+        Rear=NULL;
+    }
+    cout<<"deleted element:"<<temp->data;
+    delete temp;
+ }
+ void display()
+ {
+    if(Front==NULL)
+    {
+        cout<<"Queue empty \n";
+        return;
+    }
+    cout<<"Queue element:"<<"\n";
+    node*temp=Front;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<"  ";
+        temp=temp--->next;
+    }
+ } 
+};
+   int main (){
+    Queue q1;
+    
+    q1. enqueue(10);
+    q1. enqueue(20);
+    q1. enqueue(30);
+
+    q1. display();
+    q1. dequeue();
+    q1. display();
+
+    return 0;
+};
+
